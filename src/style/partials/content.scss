@@ -1,0 +1,93 @@
+html, body, .content {
+    width: 100%;
+    height: 100%;
+}
+.content {
+    background: linear-gradient(to top right, purple, crimson, orangered, gold);
+}
+.player {
+    &__contaier {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 400px;
+        width: 700px;
+        background-color: initial;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid;
+        -webkit-box-shadow: 30px -15px 5px 0 rgba(100, 50, 50, 0.75);
+        -moz-box-shadow:    30px -15px 5px 0 rgba(100, 50, 50, 0.75);
+        box-shadow:         30px -15px 5px 0 rgba(100, 50, 50, 0.75);
+    }
+    &__visualizer {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        height: 295px;
+        width: 500px;
+        border: 1px solid;
+        border-radius: 5px;
+        &-canvas {
+            height: 275px;
+            width: 480px;
+            padding: 10px;
+        }
+    }
+    &__controls {
+        position: absolute;
+        bottom: 15px;
+        width: 700px;
+        height: 50px;
+        border: 1px solid;
+        border-radius: 5px;
+    }
+    &__info {
+        position: absolute;
+        text-align: center;
+        width: 700px;
+        border: 1px solid;
+        border-radius: 5px;
+        top: 20px;
+        height: 20px;
+        display: table-cell;
+        line-height: 15px;
+        padding-top: 5px;
+    }
+    &__files {
+        position: absolute;
+        border: 1px solid;
+        top: 60px;
+        width: 180px;
+        height: 295px;
+        border-radius: 5px;
+        &-list {
+            top: 10px;
+            position: absolute;
+            left: 10px;
+            border: 1px solid;
+            width: 157px;
+            border-radius: 3px;
+            height: 240px;
+        }
+        &-button {
+            display: none;
+            &-visible {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                width: 157px;
+                border: 1px solid;
+                border-radius: 3px;
+                text-align: center;
+                cursor: pointer;
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}

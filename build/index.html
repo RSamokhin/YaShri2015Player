@@ -7,7 +7,24 @@
             </head>
             <body>
                 <section class="header"></section>
-        <section class="content"></section>
+        <section class='content'>
+        
+            <div class='player__contaier'>
+                <div class='player__info'>
+                    Select or Drop File to play
+                </div>
+                <div class='player__files'>
+                    <div class='player__files-list'></div>
+                    <input type='file' class='player__files-button' value='Select/Drop files' readonly/>
+                    <input class='player__files-button-visible' value='Select/Drop files' readonly onclick="document.getElementsByClassName('player__files-button')[0].click()"/>
+                </div>
+                <div class='player__visualizer'>
+                    <canvas class="player__visualizer-canvas"></canvas>
+                </div>
+                <div class='player__controls'></div>
+            </div>
+        
+        </section>
                 <section class="footer"></section>
                 <script src="js/main.js" />
             </body>
