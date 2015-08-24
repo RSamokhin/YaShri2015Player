@@ -1,3 +1,54 @@
+var vendors = ['ms', 'moz', 'webkit', 'o'];
+for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.AudioContext = window[vendors[x] + 'AudioContext'];
+    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame']
+        || window[vendors[x] + 'CancelRequestAnimationFrame'];
+}
+window.ac = {};
+window.ac.aContext = new AudioContext();
+window.ac.filesButton = document.getElementsByClassName('player__files-button')[0];
+window.ac.info = document.getElementsByClassName('player__info')[0];
+window.ac.canvas = document.getElementsByClassName('player__visualizer-canvas')[0];
+
+window.ac.filesButton.onchange = function () {
+    if (window.ac.aContext === null) {
+        return;
+    }
+    if (window.ac.filesButton.files.length !== 0) {
+        window.ac.file = window.ac.filesButton.files[0];
+        window.ac.fileName = window.ac.file.name;
+        if (window.ac.status === 1) {
+            window.ac.forceStop = true;
+        }
+        start();
+    }
+};
+window.ac.canvas.addEventListener("dragenter", function() {
+    document.getElementsByClassName('player__files')[0].style.opacity = 1;
+});
+window.ac.canvas.addEventListener("dragover", function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    //set the drop mode
+    event.dataTransfer.dropEffect = 'copy';
+});
+window.ac.canvas.addEventListener("dragleave", function() {
+    document.getElementsByClassName('player__files')[0].style.opacity = 0.2;
+});
+window.ac.canvas.addEventListener("drop", function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (window.ac.aContext===null) {return}
+    document.getElementsByClassName('player__files')[0].style.opacity = 1;
+    window.ac.file = event.dataTransfer.files[0];
+    if (window.ac.status === 1) {
+        document.getElementsByClassName('player__files')[0].style.opacity = 1;
+        window.ac.forceStop = true;
+    }
+    window.ac.fileName = window.ac.file.name;
+    start();
+});
 function start () {
     var context = window.ac,
         file = context.file,
@@ -16,6 +67,15 @@ function start () {
         alert(e);
     };
     fileReader.readAsArrayBuffer(file);
+}
+function stop () {
+    if (window.ac.forceStop) {
+        window.ac.forceStop = false;
+        window.ac.status = 1;
+        return;
+    }
+    window.ac.status = 0;
+    window.ac.info.innerHTML = 'Select one more mp3';
 }
 function visualize (context, buffer) {
     var audioBufferSouceNode = context.createBufferSource(),
@@ -93,64 +153,3 @@ function draw (analyser) {
     };
     window.ac.animationId = requestAnimationFrame(drawMeter);
 }
-function stop () {
-    if (window.ac.forceStop) {
-        window.ac.forceStop = false;
-        window.ac.status = 1;
-        return;
-    }
-    window.ac.status = 0;
-    window.ac.info.innerHTML = 'Select one more mp3';
-}
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.AudioContext = window[vendors[x] + 'AudioContext'];
-        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame']
-            || window[vendors[x] + 'CancelRequestAnimationFrame'];
-    }
-    window.ac = {};
-    window.ac.aContext = new AudioContext();
-    window.ac.filesButton = document.getElementsByClassName('player__files-button')[0];
-    window.ac.info = document.getElementsByClassName('player__info')[0];
-    window.ac.canvas = document.getElementsByClassName('player__visualizer-canvas')[0];
-
-    window.ac.filesButton.onchange = function () {
-        if (window.ac.aContext === null) {
-            return;
-        }
-        if (window.ac.filesButton.files.length !== 0) {
-            window.ac.file = window.ac.filesButton.files[0];
-            window.ac.fileName = window.ac.file.name;
-            if (window.ac.status === 1) {
-                window.ac.forceStop = true;
-            }
-            start();
-        }
-    };
-    window.ac.canvas.addEventListener("dragenter", function() {
-        document.getElementsByClassName('player__files')[0].style.opacity = 1;
-    });
-    window.ac.canvas.addEventListener("dragover", function(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        //set the drop mode
-        event.dataTransfer.dropEffect = 'copy';
-    });
-    window.ac.canvas.addEventListener("dragleave", function() {
-        document.getElementsByClassName('player__files')[0].style.opacity = 0.2;
-    });
-    window.ac.canvas.addEventListener("drop", function(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (window.ac.aContext===null) {return}
-        document.getElementsByClassName('player__files')[0].style.opacity = 1;
-        window.ac.file = event.dataTransfer.files[0];
-        if (window.ac.status === 1) {
-            document.getElementsByClassName('player__files')[0].style.opacity = 1;
-            window.ac.forceStop = true;
-        }
-        window.ac.fileName = window.ac.file.name;
-        start();
-    });
-
