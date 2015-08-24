@@ -9372,4 +9372,7 @@ $(function() {
         start();
     });
 
-})
+});
+$(function() {
+    console.log( "ready!" );
+});
