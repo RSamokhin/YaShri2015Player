@@ -9319,7 +9319,6 @@ function stop () {
     window.ac.status = 0;
     window.ac.info.innerHTML = 'Select one more mp3';
 }
-$(function() {
     var vendors = ['ms', 'moz', 'webkit', 'o'];
     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
         window.AudioContext = window[vendors[x] + 'AudioContext'];
@@ -9371,8 +9370,3 @@ $(function() {
         window.ac.fileName = window.ac.file.name;
         start();
     });
-
-});
-$(function() {
-    console.log( "ready!" );
-});
