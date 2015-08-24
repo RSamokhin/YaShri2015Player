@@ -102,7 +102,7 @@ function stop () {
     window.ac.status = 0;
     window.ac.info.innerHTML = 'Select one more mp3';
 }
-window.onload = function() {
+$(function() {
     var vendors = ['ms', 'moz', 'webkit', 'o'];
     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
         window.AudioContext = window[vendors[x] + 'AudioContext'];
@@ -155,4 +155,4 @@ window.onload = function() {
         start();
     });
 
-};
+})
