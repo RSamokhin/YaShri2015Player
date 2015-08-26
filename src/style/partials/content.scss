@@ -44,6 +44,33 @@ html, body, .content {
         height: 50px;
         border: 1px solid;
         border-radius: 5px;
+        display: inline;
+        &-button {
+            height: 32px;
+            width: 32px;
+            margin-left: 9px;
+            margin-top: 9px;
+            display: inline-block;
+            cursor: pointer;
+            &:hover{
+                opacity: 0.6;
+            }
+            &-prev {
+                background-image: url(../img/icon/icon-prev.png);
+            }
+            &-play {
+                background-image: url(../img/icon/icon-play.png);
+            }
+            &-pause {
+                background-image: url(../img/icon/icon-pause.png);
+            }
+            &-stop {
+                background-image: url(../img/icon/icon-stop.png);
+            }
+            &-next {
+                background-image: url(../img/icon/icon-next.png);
+            }
+        }
     }
     &__info {
         position: absolute;
