@@ -71,6 +71,37 @@ html, body, .content {
                 background-image: url(../img/icon/icon-next.png);
             }
         }
+        &-status {
+            display: inline-block;
+            border: 1px solid;
+            height: 15px;
+            width: 450px;
+            margin-left: 10px;
+            border-radius: 10px;
+            margin-bottom: 7px;
+            cursor: pointer;
+            &-played {
+                display: inline-block;
+                background-color: gray;
+                height: 15px;
+                width: 150px;
+                border-radius: 10px;
+                margin-bottom: 8px;
+                position: relative;
+            }
+            &-button {
+                background-image: url(../img/icon/icon-dot.png);
+                height: 32px;
+                width: 32px;
+                background-repeat: no-repeat;
+                float: right;
+                background-position: center;
+                position: absolute;
+                right: -8px;
+                top: -8px;
+                cursor: pointer;
+            }
+        }
     }
     &__info {
         position: absolute;

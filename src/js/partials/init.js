@@ -10,6 +10,7 @@ window.ac.aContext = new AudioContext();
 window.ac.filesButton = document.getElementsByClassName('player__files-button')[0];
 window.ac.info = document.getElementsByClassName('player__info')[0];
 window.ac.canvas = document.getElementsByClassName('player__visualizer-canvas')[0];
+window.ac.statusBar = document.getElementsByClassName('player__controls-status')[0]
 
 window.ac.filesButton.onchange = function () {
     if (window.ac.aContext === null) {
@@ -49,6 +50,15 @@ window.ac.canvas.addEventListener("drop", function(event) {
     window.ac.fileName = window.ac.file.name;
     start();
 });
+window.ac.statusBar.addEventListener("click", function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    var offset = this.getBoundingClientRect();
+    var relX = event.pageX - offset.left;
+    var relY = event.pageY - offset.top;
+    document.getElementsByClassName('player__controls-status-played')[0].style.width = relX+'px';
+});
+
 function start () {
     var context = window.ac,
         file = context.file,
