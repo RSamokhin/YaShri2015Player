@@ -84,7 +84,9 @@ html, body, .content {
                 display: inline-block;
                 background-color: gray;
                 height: 15px;
-                width: 0px;
+                width: 0;
+                min-width: 15px;
+                max-width: 450px;
                 border-radius: 10px;
                 margin-bottom: 8px;
                 position: relative;
